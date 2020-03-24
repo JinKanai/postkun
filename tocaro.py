@@ -1,6 +1,3 @@
-import os
-
-#from common.http_client import HttpClient
 from base import PostkunBase
 
 
@@ -24,16 +21,11 @@ class TocaroHandler(PostkunBase):
         self.message["text"] = text
 
     def set_color(self, color):
+
         self.message["color"] = color
 
     def set_attachments(self, contents):
         self.message["attachments"] = contents
-
-    def send2tocaro(self):
-        tocaro_url = os.environ["MESSENGER_URL"]
-        headers = {"Content-type": "application/json"}
-        body = HttpClient.post(tocaro_url, self.message, headers)
-        return body
 
 
 if __name__ == "__main__":

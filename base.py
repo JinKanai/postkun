@@ -24,5 +24,5 @@ class PostkunBase:
             body = HttpClient.post(url, self.message, headers)
             return body
         except KeyError as e:
-            print(e.reason)
+            print("environment value {0} is not found.".format(e))
             return False
