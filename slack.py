@@ -5,16 +5,16 @@ class SlackHandler(PostkunBase):
 
     def __init__(self):
         self.message = {
-                "channel": "C1H9RESGL",
-                "blocks": [
-                    {
+            "channel": "C1H9RESGL",
+            "blocks": [
+                {
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
                         "text": "Danny Torrence left the following review for your property:"
                     }
-                    },
-                    {
+                },
+                {
                     "type": "section",
                     "block_id": "section567",
                     "text": {
@@ -26,19 +26,19 @@ class SlackHandler(PostkunBase):
                         "image_url": "https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg",
                         "alt_text": "Haunted hotel image"
                     }
-                    },
-                    {
+                },
+                {
                     "type": "section",
                     "block_id": "section789",
                     "fields": [
                         {
-                        "type": "mrkdwn",
-                        "text": "*Average Rating*\n1.0"
+                            "type": "mrkdwn",
+                            "text": "*Average Rating*\n1.0"
                         }
                     ]
-                    }
-                ]
-            }
+                }
+            ]
+        }
 
     def set_title(self, title):
         self.message[""]
@@ -47,7 +47,6 @@ class SlackHandler(PostkunBase):
         self.message["text"] = text
 
     def set_color(self, color):
-
         self.message["color"] = color
 
     def set_attachments(self, contents):

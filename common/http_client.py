@@ -37,7 +37,8 @@ class HttpClient:
 
     @staticmethod
     def fetch_api(req):
-        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+        context = None
+        #context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
         body = None
         try:
             with urllib.request.urlopen(req, context=context) as res:
