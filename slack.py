@@ -5,56 +5,55 @@ class SlackHandler(PostkunBase):
 
     def __init__(self):
         self.message = {
-            "channel": "C1H9RESGL",
-            "blocks": [
+            "channel": "hoge",
+            "test": "hoge",
+            "attachments": [
                 {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "Danny Torrence left the following review for your property:"
-                    }
-                },
-                {
-                    "type": "section",
-                    "block_id": "section567",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "<https://google.com|Overlook Hotel> \n :star: \n Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
-                    },
-                    "accessory": {
-                        "type": "image",
-                        "image_url": "https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg",
-                        "alt_text": "Haunted hotel image"
-                    }
-                },
-                {
-                    "type": "section",
-                    "block_id": "section789",
-                    "fields": [
-                        {
-                            "type": "mrkdwn",
-                            "text": "*Average Rating*\n1.0"
-                        }
-                    ]
+                    # "fallback": "FALLBACK TEXT.",
+                    # "color": "#2eb886",
+                    # "pretext": "",
+                    # "author_name": "AWS BillingNotify",
+                    # "author_icon": "http://flickr.com/icons/bobby.jpg",
+                    # "title": "AWS x月の利用料金",
+                    # "title_link": "https://api.slack.com/",
+                    # "text": "本日までの累計：20$ (約2000円)",
+                    # "fields": [
+                    #    {
+                    #        "title": "EC2",
+                    #        "value": "12 USD",
+                    #        "short": False
+                    #    },
+                    #    {
+                    #        "title": "Lambda",
+                    #        "value": "0.11 USD",
+                    #        "short": False
+                    #    }
+                    # ],
+                    # "image_url": "http://my-website.com/path/to/image.jpg",
+                    # "thumb_url": "http://example.com/path/to/thumb.png",
+                    # "footer": "Slack API",
+                    # "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+                    # "ts": 1234567898
                 }
             ]
         }
 
     def set_title(self, title):
-        self.message[""]
+        self.message["attachments"][0]["title"] = title
 
     def set_text(self, text):
         self.message["text"] = text
 
     def set_color(self, color):
-        self.message["color"] = color
+        self.message["attachments"][0]["color"] = color
 
     def set_attachments(self, contents):
-        self.message["attachments"] = contents
+        pass
 
 
 if __name__ == "__main__":
     t = SlackHandler()
-    t.set_text("test-death")
-    t.set_color("danger")
+    t.set_title("AWS 4月の利用料金")
+    t.set_text("料金通知")
+    t.set_color("#f8991e")
     print(t.post_message())

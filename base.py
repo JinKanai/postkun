@@ -20,9 +20,10 @@ class PostkunBase:
     def post_message(self):
         try:
             url = os.environ["MESSENGER_URL"]
-            headers = {"Content-type": "application/json"}
-            body = HttpClient.post(url, self.message, headers)
-            return body
         except KeyError as e:
             print("environment value {0} is not found.".format(e))
             return False
+        headers = {"Content-type": "application/json"}
+        body = HttpClient.post(url, self.message, headers)
+        return body
+

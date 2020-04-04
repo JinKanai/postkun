@@ -38,12 +38,13 @@ class HttpClient:
     @staticmethod
     def fetch_api(req):
         context = None
-        #context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+        # context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
         body = None
         try:
             with urllib.request.urlopen(req, context=context) as res:
                 if req.get_method() != "DELETE":
-                    body = json.load(res)
+                    if "text/html" in res.info():
+                        body = json.load(res)
 
         except urllib.error.HTTPError as e:
             print("HTTP Error has detected. Abort. status code is {0}.".format(e.code))
