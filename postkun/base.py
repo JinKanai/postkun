@@ -1,6 +1,6 @@
 import os
 
-from common.http_client import HttpClient
+from .common.http_client import HttpClient
 
 
 class PostkunBase:

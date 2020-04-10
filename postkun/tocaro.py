@@ -1,4 +1,4 @@
-from base import PostkunBase
+from .base import PostkunBase
 
 
 class TocaroHandler(PostkunBase):
