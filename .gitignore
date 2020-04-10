@@ -131,3 +131,4 @@ dmypy.json
 .envrc
 .idea/**/workspace.xml
 .idea/**/tasks.xml
+.vscode/
