@@ -16,7 +16,8 @@ class HttpClient:
     @staticmethod
     def post(url, contents, headers):
         try:
-            req = urllib.request.Request(url, json.dumps(contents).encode(), headers=headers)
+            req = urllib.request.Request(url, json.dumps(
+                contents).encode(), headers=headers)
             return HttpClient.fetch_api(req)
         except ValueError as e:
             print(e)
@@ -43,15 +44,17 @@ class HttpClient:
         try:
             res = urllib.request.urlopen(req, context=context)
             if res.length:
-                    body = json.load(res)
+                body = json.load(res)
 
         except urllib.error.HTTPError as e:
-            print("HTTP Error has detected. Abort. status code is {0}.".format(e.code))
+            print(
+                "HTTP Error has detected. Abort. status code is {0}.".format(e.code))
             print(traceback.format_exc())
             print(req.get_full_url())
             sys.exit(1)
         except urllib.error.URLError as e:
-            print("URL Error has detected. Abort. the reason is '{0}'.".format(e.reason))
+            print(
+                "URL Error has detected. Abort. the reason is '{0}'.".format(e.reason))
             print(traceback.format_exc())
             print(req.get_full_url())
             sys.exit(1)
