@@ -16,7 +16,8 @@ class HttpClient:
     @staticmethod
     def post(url, contents, headers):
         try:
-            req = urllib.request.Request(url, json.dumps(contents).encode(), headers=headers)
+            req = urllib.request.Request(url, json.dumps(
+                contents).encode(), headers=headers)
             return HttpClient.fetch_api(req)
         except ValueError as e:
             print(e)
@@ -37,22 +38,23 @@ class HttpClient:
 
     @staticmethod
     def fetch_api(req):
-        context = None
-        # context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
         body = None
+        res = None
         try:
-            with urllib.request.urlopen(req, context=context) as res:
-                if req.get_method() != "DELETE":
-                    if "text/html" in res.info():
-                        body = json.load(res)
+            res = urllib.request.urlopen(req, context=context)
+            if res.length:
+                body = json.load(res)
 
         except urllib.error.HTTPError as e:
-            print("HTTP Error has detected. Abort. status code is {0}.".format(e.code))
+            print(
+                "HTTP Error has detected. Abort. status code is {0}.".format(e.code))
             print(traceback.format_exc())
             print(req.get_full_url())
             sys.exit(1)
         except urllib.error.URLError as e:
-            print("URL Error has detected. Abort. the reason is '{0}'.".format(e.reason))
+            print(
+                "URL Error has detected. Abort. the reason is '{0}'.".format(e.reason))
             print(traceback.format_exc())
             print(req.get_full_url())
             sys.exit(1)
@@ -60,5 +62,7 @@ class HttpClient:
             print(traceback.format_exc())
             print(e)
             sys.exit(1)
-        else:
-            return body
+        finally:
+            if res:
+                res.close()
+        return body

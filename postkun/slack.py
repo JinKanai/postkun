@@ -4,6 +4,7 @@ from .base import PostkunBase
 class SlackHandler(PostkunBase):
 
     def __init__(self):
+        super().__init__()
         self.message = {
             "channel": "hoge",
             "test": "hoge",
@@ -51,9 +52,3 @@ class SlackHandler(PostkunBase):
         pass
 
 
-if __name__ == "__main__":
-    t = SlackHandler()
-    t.set_title("AWS 4月の利用料金")
-    t.set_text("料金通知")
-    t.set_color("#f8991e")
-    print(t.post_message())

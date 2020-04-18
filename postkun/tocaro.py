@@ -4,6 +4,7 @@ from .base import PostkunBase
 class TocaroHandler(PostkunBase):
 
     def __init__(self):
+        super().__init__()
         self.message = {
             "text": "string",
             "color": "color //info,warning,danger,success",
