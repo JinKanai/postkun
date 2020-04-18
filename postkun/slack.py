@@ -39,16 +39,19 @@ class SlackHandler(PostkunBase):
             ]
         }
 
+    def set_pre_text(self, text):
+        self.message["text"] = text
+
     def set_title(self, title):
         self.message["attachments"][0]["title"] = title
 
     def set_text(self, text):
-        self.message["text"] = text
+        self.message["attachments"][0]["text"] = text
 
     def set_color(self, color):
         self.message["attachments"][0]["color"] = color
 
     def set_attachments(self, contents):
-        pass
+        self.message["attachments"][0]["fields"] = contents
 
 

@@ -8,15 +8,6 @@ class PostkunBase:
     def __init__(self):
         self.message = {}
 
-    def set_text(self, text):
-        pass
-
-    def set_color(self, color):
-        pass
-
-    def set_attachments(self, contents):
-        pass
-
     def post_message(self):
         try:
             url = os.environ["MESSENGER_URL"]
@@ -26,4 +17,3 @@ class PostkunBase:
         headers = {"Content-type": "application/json"}
         body = HttpClient.post(url, self.message, headers)
         return body
-
