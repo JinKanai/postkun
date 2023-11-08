@@ -11,14 +11,14 @@ class HttpClient:
     @staticmethod
     def get(url, headers):
         req = urllib.request.Request(url, headers=headers)
-        return HttpClient.fetch_api(req)
+        return HttpClient.fetch_url(req)
 
     @staticmethod
     def post(url, contents, headers):
         try:
             req = urllib.request.Request(url, json.dumps(
                 contents).encode(), headers=headers)
-            return HttpClient.fetch_api(req)
+            return HttpClient.fetch_url(req)
         except ValueError as e:
             print(e)
             return False
@@ -37,14 +37,15 @@ class HttpClient:
     """
 
     @staticmethod
-    def fetch_api(req):
+    def fetch_url(req):
         context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
         body = None
         res = None
         try:
             res = urllib.request.urlopen(req, context=context)
-            if res.length:
-                body = json.load(res)
+            body = res.read().decode()
+            #if res.length:
+            #    body = json.load(res)
 
         except urllib.error.HTTPError as e:
             print(
